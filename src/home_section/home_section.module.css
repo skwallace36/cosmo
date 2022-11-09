@@ -1,0 +1,10 @@
+/* home.css */
+.homeSection {
+  display: flex;
+  /* flex: 1 1 auto; */
+  /* width: 1px; */
+  /* flex-grow: var(--home_section_flex_grow); */
+  /* flex: 1 1 100px; */
+  border-style: solid;
+  border-width: 1px;
+}
