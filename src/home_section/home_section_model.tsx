@@ -14,6 +14,7 @@ class Neighbors {
 }
 
 class HomeSectionModel {
+  short_name: string;
   section_key: string;
   width: number;
   start_width: number;
@@ -25,14 +26,27 @@ class HomeSectionModel {
   all_up_neighbors: HomeSectionModel[] = [];
   down_neighbors: HomeSectionModel[] = [];
   all_down_neighbors: HomeSectionModel[] = [];
+  not_resizable_edges: Direction[] = [];
 
-
-
-
-  constructor(width: number) {
+  constructor(width: number, short_name: string, not_resizable_edges: Direction[]) {
+    this.short_name = short_name;
     this.width = width;
+    this.not_resizable_edges = not_resizable_edges;
     this.start_width = width;
     this.section_key = uuid();
+  }
+
+  neighbors = (edge: Direction): HomeSectionModel[] => {
+    switch(edge) {
+      case Direction.Left:
+        return this.left_neighbors;
+      case Direction.Right:
+        return this.right_neighbors;
+      case Direction.Up:
+        return this.up_neighbors;
+      case Direction.Down:
+        return this.down_neighbors;
+    }
   }
 
   set_all_neighbors = () => {
@@ -70,7 +84,6 @@ class HomeSectionModel {
         });
         break; 
     }
-    // return [];
   };
 }
 
